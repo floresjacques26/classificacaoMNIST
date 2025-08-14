@@ -10,18 +10,6 @@ Este projeto treina uma **rede neural convolucional (CNN)** para reconhecer díg
 - Previsão de dígitos a partir de imagens externas (`predict.py`)
 - Pipeline simples para demonstração de classificação de imagens
 
-## 📦 Estrutura do Projeto
-
-image-classification-starter/
-│
-├─ data/ # Dataset MNIST baixado automaticamente
-├─ images/ # Imagens de teste (digitais feitas pelo usuário)
-├─ outputs/ # Modelos treinados e meta.json
-├─ train.py # Script de treino
-├─ predict.py # Script de previsão
-├─ requirements.txt # Dependências do projeto
-└─ README.md # Este arquivo
-
 ## 🛠 Tecnologias
 
 - Python 3
@@ -32,7 +20,7 @@ image-classification-starter/
 
 ## ⚡ Instalação
 
-1. Clone o repositório:
+ Clone o repositório:
 
 ```bash
 git clone <URL_DO_REPOSITORIO>
