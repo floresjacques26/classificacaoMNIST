@@ -1,61 +1,94 @@
-# 🖼️ Image Classification Starter (MNIST / CIFAR-10)
 
-Projeto simples em **PyTorch** para treinar um classificador de imagens usando **MNIST** (mais fácil) ou **CIFAR‑10** (um pouco mais desafiador). O código já faz **download automático** do dataset via `torchvision`.
+# Classificação de Dígitos MNIST com PyTorch
 
-## ✅ Requisitos
-- Python 3.9+
-- Pip atualizado
+Este projeto treina uma **rede neural convolucional (CNN)** para reconhecer dígitos escritos à mão do dataset MNIST. É uma aplicação clássica de **Deep Learning**.
 
-## 🚀 Passo a passo rápido
+## 🚀 Funcionalidades
+
+- Treino de uma CNN no dataset MNIST
+- Salvamento do melhor modelo (`best_model.pth`)
+- Previsão de dígitos a partir de imagens externas (`predict.py`)
+- Pipeline simples para demonstração de classificação de imagens
+
+## 📦 Estrutura do Projeto
+
+image-classification-starter/
+│
+├─ data/ # Dataset MNIST baixado automaticamente
+├─ images/ # Imagens de teste (digitais feitas pelo usuário)
+├─ outputs/ # Modelos treinados e meta.json
+├─ train.py # Script de treino
+├─ predict.py # Script de previsão
+├─ requirements.txt # Dependências do projeto
+└─ README.md # Este arquivo
+
+## 🛠 Tecnologias
+
+- Python 3
+- PyTorch
+- Torchvision
+- Pillow
+- tqdm
+
+## ⚡ Instalação
+
+1. Clone o repositório:
 
 ```bash
-# 1) Crie e ative um ambiente virtual (Windows PowerShell)
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+git clone <URL_DO_REPOSITORIO>
+cd image-classification-starter
 
-# 2) Instale dependências
+
+Crie e ative um ambiente virtual (opcional, mas recomendado):
+
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1   # Windows PowerShell
+
+
+Instale as dependências:
+
 pip install -r requirements.txt
 
-# 3) Treine no MNIST (recomendado para começar)
-python train.py --dataset mnist --epochs 5
 
-# 4) Ou treine no CIFAR-10
-python train.py --dataset cifar10 --epochs 10
+Baixe o dataset MNIST (automaticamente pelo PyTorch):
 
-# 5) (Opcional) Defina diretórios
-python train.py --dataset mnist --data_dir ./data --out_dir ./outputs
-```
+python -c "from torchvision import datasets; datasets.MNIST(root='./data', train=True, download=True)"
 
-Os dados serão baixados automaticamente para `--data_dir` na primeira execução.
+🏋️‍♂️ Treinamento
 
-## 🧠 O que o script faz?
-- Faz download do dataset (MNIST ou CIFAR-10)
-- Cria **DataLoaders** com transforms adequadas e normalização
-- Define uma **CNN simples**
-- Treina e avalia **acurácia** no conjunto de teste
-- Salva o melhor modelo em `outputs/best_model.pth` + `outputs/meta.json`
+Treine o modelo com:
 
-## 📁 Estrutura
-```
-image-classification-starter/
-├─ train.py
-├─ requirements.txt
-├─ README.md
-└─ .gitignore
-```
+python train.py --epochs 15 --batch_size 64
 
-## 🧪 Exemplos de uso
-```bash
-# Treinar com batch maior e por mais épocas
-python train.py --dataset mnist --epochs 8 --batch_size 128 --lr 1e-3
-```
 
-## ✨ Dicas
-- Comece com **MNIST** (rápido e estável). Depois migre para **CIFAR‑10**.
-- Se tiver GPU (CUDA), o script usa automaticamente.
-- Para ver algumas amostras, use `--show_samples 1` (abre uma janela matplotlib).
-```bash
-python train.py --dataset mnist --show_samples 1
-```
+Isso salvará o melhor modelo em outputs/best_model.pth e o arquivo meta.json necessário para previsões.
 
-Bom estudo e bons treinos! 🚀
+🔮 Previsão
+
+Para prever uma imagem externa:
+
+python predict.py --image ./images/exemplo.png --model ./outputs/best_model.pth --out_dir ./outputs
+
+
+Exemplo de saída:
+
+Imagem: exemplo.png
+Previsão: 5
+
+📈 Resultados
+
+Melhor acurácia: ~99.4%
+
+Modelo robusto para dígitos manuscritos
+
+💡 Observações
+
+O arquivo meta.json contém informações sobre o dataset e classes e é necessário para o script de previsão.
+
+Você pode adicionar imagens na pasta images/ para testar o modelo.
+
+O projeto é totalmente funcional em CPU, mas se você tiver GPU, o PyTorch utilizará automaticamente.
+
+📌 Conclusão
+
+Este projeto demonstra todo o pipeline de classificação de imagens, desde o treino até a previsão, sendo um ótimo exemplo de Machine Learning e Deep Learning.
